@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Advertisements;
 
 public class GameManager : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour {
 
     private void Awake()
     {
+        Advertisement.Initialize("5720488");
+
         if (singleton == null)
             singleton = this;
         else if (singleton != this)
@@ -30,8 +33,10 @@ public class GameManager : MonoBehaviour {
 
     public void RestartLevel()
     {
-        Debug.Log("Restarting Level");
+        Debug.Log("Show Adds");
         // Show Adds Advertisement.Show();
+        Advertisement.Show("Show Adds");
+        
         singleton.score = 0;
         FindObjectOfType<BallController>().ResetBall();
         FindObjectOfType<HelixController>().LoadStage(currentStage);
@@ -47,6 +52,4 @@ public class GameManager : MonoBehaviour {
             best = score;
         }
     }
-
-
 }
